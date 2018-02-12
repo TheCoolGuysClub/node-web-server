@@ -2,7 +2,8 @@ const express = require('express');
 const hbs = require('hbs');
 
 const app = express();
-const path = require('path');
+const path
+ = require('path');
 
 app.set('view engine', 'hbs');
 hbs.registerPartials(path.join(__dirname, "views", "partials"));
