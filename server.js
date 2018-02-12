@@ -7,6 +7,13 @@ const path
 
 app.set('view engine', 'hbs');
 hbs.registerPartials(path.join(__dirname, "views", "partials"));
+hbs.registerHelper('getCurrentYear', () => {
+  return new Date().getFullYear();
+})
+hbs.registerHelper('yell', (word) => {
+  return word.substr(0,1).toUpperCase() + word.substr(1).toLowerCase() + "!!!";
+
+})
 // __dirname + "/views/partials"
 
 // app.get('/about', (req, res) => {
@@ -36,6 +43,15 @@ app.get('/about', (req, res) => {
     year: new Date().getFullYear(),
   })
 })
+
+app.get(/.*ing/, (req, res) => {
+  res.send({
+    year: new Date().getFullYear(),
+    originalUrl: req.originalUrl,
+    school: req.query.school,
+    class: req.query.class
+  })
+});
 
 // app.use(express.static(__dirname + "/public"));
 
